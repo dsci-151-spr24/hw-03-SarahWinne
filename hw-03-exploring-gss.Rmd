@@ -54,7 +54,7 @@ library(tidyverse)
 library(dsbox)
 ```
 
-##Data
+## Data
 
 The data can be found in the **dsbox** package, and it's called `gss16`.
 Since the dataset is distributed with the package, we don't need to load it separately; it becomes available to us when we load the package.
