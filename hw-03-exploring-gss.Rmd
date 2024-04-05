@@ -1,5 +1,6 @@
 ---
 title: "HW 03 - Exploring the GSS"
+author: "Sarah Winne"
 output: html_document
 ---
 
