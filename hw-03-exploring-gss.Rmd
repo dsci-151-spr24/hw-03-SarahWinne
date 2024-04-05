@@ -54,7 +54,7 @@ library(tidyverse)
 library(dsbox)
 ```
 
-## Data
+##Data
 
 The data can be found in the **dsbox** package, and it's called `gss16`.
 Since the dataset is distributed with the package, we don't need to load it separately; it becomes available to us when we load the package.
@@ -73,6 +73,8 @@ The question is phrased as the following.
 Answers to this question are stored in the `harass5` variable in our dataset.
 
 1.  What are the possible responses to this question and how many respondents chose each of these answers?
+
+***Possible responses are Yes, No, and Does not apply. `r ` respondents chose Yes. `r ` respondents chose No. `r ` respondents chose Does not apply.***
 
 2.  What percent of the respondents for whom this question is applicable\
     (i.e. excluding `NA`s and `Does not apply`s) have been harassed by their superiors or co-workers at their job.
