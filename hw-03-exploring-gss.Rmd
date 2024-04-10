@@ -61,6 +61,10 @@ Since the dataset is distributed with the package, we don't need to load it sepa
 You can find out more about the dataset by inspecting its documentation, which you can access by running `?gss16` in the Console or using the Help menu in RStudio to search for `gss16`.
 You can also find this information [here](https://rstudio-education.github.io/dsbox/reference/gss16.html).
 
+``` {r}
+gss16 <- gss16
+```
+
 # Exercises
 
 ## Part 1: Harassment at work
@@ -74,10 +78,16 @@ Answers to this question are stored in the `harass5` variable in our dataset.
 
 1.  What are the possible responses to this question and how many respondents chose each of these answers?
 
-***Possible responses are Yes, No, and Does not apply. `r ` respondents chose Yes. `r ` respondents chose No. `r ` respondents chose Does not apply.***
+***Possible responses are Yes, No, and Does not apply. 237 respondents chose Yes. 1136 respondents chose No. 96 respondents chose Does not apply. (1398 were NA)***
+
+``` {r}
+gss16 %>% count(harass5)
+```
 
 2.  What percent of the respondents for whom this question is applicable\
     (i.e. excluding `NA`s and `Does not apply`s) have been harassed by their superiors or co-workers at their job.
+    
+***`r 237/(1136+237)`% of applicable respondents have been harassed by their superiors or co-workers at their job.***
 
 🧶 ✅ ⬆️ Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.*
 
