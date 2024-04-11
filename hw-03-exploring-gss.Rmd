@@ -148,6 +148,14 @@ gss16 %>% count(wrkstat)
 
 8.  Fit a model predicting `email` (number of minutes per week spent on email) from `educ` (number of years of education), `wrkstat`, and `snap_insta`.
     Interpret the slopes for each of these variables.
+    
+``` {r}
+fit1 <- lm(email ~ educ + wrkstat + snap_insta, data = gss16)
+
+ggplot(gss16, aes(x = educ, y = email)) + 
+  geom_point() +
+  stat_smooth(method = "lm", se = FALSE, col = "gray")
+```
 
 9.  Create a predicted values vs. residuals plot for this model.
     Are there any issues with the model?
