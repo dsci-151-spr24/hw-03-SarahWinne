@@ -87,7 +87,7 @@ gss16 %>% count(harass5)
 2.  What percent of the respondents for whom this question is applicable\
     (i.e. excluding `NA`s and `Does not apply`s) have been harassed by their superiors or co-workers at their job.
     
-***`r 237/(1136+237)`% of applicable respondents have been harassed by their superiors or co-workers at their job.***
+***`r (237/(1136+237))*100`% of applicable respondents have been harassed by their superiors or co-workers at their job.***
 
 🧶 ✅ ⬆️ Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.*
 
@@ -124,10 +124,27 @@ gss16 %>%
 5.  Create another new variable, `snap_insta` that is coded as "Yes" if the respondent reported using any of Snapchat (`snapchat`) or Instagram (`instagrm`), and "No" if not.
     If the recorded value was `NA` for both of these questions, the value in your new variable should also be `NA`.
 
+``` {r}
+gss16 <- gss16 %>% 
+  mutate(snap_insta = if_else((snapchat==("Yes")) | (instagrm==("Yes")), "Yes", "No"))
+```
+
 6.  Calculate the percentage of Yes's for `snap_insta` among those who answered the question, i.e. excluding `NA`s.
+
+``` {r}
+gss16 %>% count(snap_insta)
+```
+
+***Excluding NA's, `r (514/(858+514))*100`% of the respondents had snapchat or instagram.***
 
 7.  What are the possible responses to the question *Last week were you working full time, part time, going to school, keeping house, or what?* and how many respondents chose each of these answers?
     Note that this information is stored in the `wrkstat` variable.
+
+``` {r}
+gss16 %>% count(wrkstat)
+```
+
+***The options(with number of responses in parenthesis) are: Keeping house(284), Other(89), Retired(574), School(76), Temp not working(57), Unemployed/laid off(118), Working full time(1321), or Working part time(345). There were 3 NA responses.***
 
 8.  Fit a model predicting `email` (number of minutes per week spent on email) from `educ` (number of years of education), `wrkstat`, and `snap_insta`.
     Interpret the slopes for each of these variables.
