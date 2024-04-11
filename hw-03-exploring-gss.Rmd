@@ -110,14 +110,16 @@ gss16 <- gss16 %>%
     Why?
 
 ``` {r}
-gss16 %>%
-  summarise(mean = mean(email), median = median(email))
-```
-
-``` {r}
 ggplot(data = gss16, mapping = aes(x = email)) + 
   geom_density()
 ```
+
+``` {r}
+gss16 %>%
+  summarise(mean = mean(email, na.rm = TRUE), median = median(email, na.rm = TRUE))
+```
+
+***The mean is 416.8423 minutes and the median is 120 minutes(spent on email weekly, by Americans). The median here is a better measure of the typical because the distribution of minutes spent on email weekly is heavily right skewed. So because the mean is heavily affected by the larger values, the median is a better measure of the typical time spent on emails.***
 
 5.  Create another new variable, `snap_insta` that is coded as "Yes" if the respondent reported using any of Snapchat (`snapchat`) or Instagram (`instagrm`), and "No" if not.
     If the recorded value was `NA` for both of these questions, the value in your new variable should also be `NA`.
