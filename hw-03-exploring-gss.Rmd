@@ -151,15 +151,20 @@ gss16 %>% count(wrkstat)
     
 ``` {r}
 fit1 <- lm(email ~ educ + wrkstat + snap_insta, data = gss16)
-
-ggplot(gss16, aes(x = educ, y = email)) + 
-  geom_point() +
-  stat_smooth(method = "lm", se = FALSE, col = "gray")
+summary(fit1)
 ```
+
+***Education has an slope of 29.632, which means for each year they have spent in education, the number of minutes they spend on email is predicted to increase 29.632. Snap_insta(Yes) has an slope of 149.961, which means if they do have snap or instagram, it is predicted they have 149.961 more minutes on email. For work status: those on parttime have a slope of 18.900, fulltime has 366.840, unemployed or laid off has 118.349, retired has 68.279, and other has 33.057. For these slopes, it means those in that work status have that slope more minutes on email. For those temporarily not working, they have a slope of -73.709, and those in schooling have a slope of -123.812. For those two negative slopes, it means they spend that many less minutes on email.***
 
 9.  Create a predicted values vs. residuals plot for this model.
     Are there any issues with the model?
     If yes, describe them.
+
+``` {r}
+plot(fit1$residuals)
+``` 
+
+***Yes, there are problems with this model. The main one to be seen in the plot above is a non-random pattern in the residuals. All of the residuals are either far above the predicted values, or just around them. Though the distribution of them on the x-axis is pretty evenly spread, the y-axis is not.***
 
 🧶 ✅ ⬆️ Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards.*
 
