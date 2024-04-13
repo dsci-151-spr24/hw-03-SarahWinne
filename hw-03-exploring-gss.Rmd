@@ -195,12 +195,36 @@ Responses that were originally Don't know, No answer and Not applicable are alre
     The remaining levels can be left as is.
     Don't overwrite the existing `advfront`, instead pick a different, informative name for your new variable.
 
+``` {r}
+gss16 <- gss16 %>% 
+  mutate(advfront_simple = 
+           if_else((advfront==("Strongly agree")) | (advfront==("Agree")), "Yes",
+                  if_else((advfront==("Strongly disagree")) | (advfront==("Disagree")),
+                          "No", advfront)))
+```
+
 11. In a new variable, recode `polviews` such that Extremely liberal, Liberal, and Slightly liberal, are mapped to `"Liberal"`, and Slghtly conservative, Conservative, and Extrmly conservative disagree are mapped to `"Conservative"`.
     The remaining levels can be left as is.
     Make sure that the levels are in a reasonable order.
     Don't overwrite the existing `polviews`, instead pick a different, informative name for your new variable.
 
+``` {r}
+gss16 <- gss16 %>% 
+  mutate(polviews_simple = 
+           if_else((polviews==("Extremely liberal")) | (polviews==("Slightly liberal")), "Liberal",
+                  if_else((polviews==("Slghtly conservative")) | (polviews==("Extrmly conservative")),
+                          "Conservative", polviews)))
+```
+
 12. Create a visualization that displays the relationship between these two new variables and interpret it.
+
+``` {r}
+ggplot(gss16, mapping = aes(x = advfront_simple, fill = advfront_simple)) + 
+  geom_bar(position = "dodge") +
+  facet_wrap(~polviews_simple)
+```
+
+***So many of the respondents left the question of advancing scientific frontiers (advfront) as NA, but of the one's who did respond, most said yes. Those who identified as Moderate politically gave slightly more Yes responses than Conservative or Liberal. Those who identified as Conservative were slightly more likely to give a No or Don't know response.***
 
 🧶 ✅ ⬆️ Knit, *commit, and push your changes to GitHub with an appropriate commit message. Make sure to commit and push all changed files so that your Git pane is cleared up afterwards and review the md document on GitHub to make sure you're happy with the final state of your work.*
 
